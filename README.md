@@ -6,3 +6,11 @@ Coin Stats
 1. Profit
 
 If you want to change the order of things, reorder the sections in config.ini
+
+Currently supports:
+- BTCGuild.com
+- Cryptsy
+- Multipool.us
+- WeMineLTC.com
+- Blockchain
+- Vircurex
