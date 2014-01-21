@@ -20,11 +20,12 @@ class MultipoolService extends JsonService {
 		}
 				
 		$workers = array();
-		foreach($data['workers'] as $w) {
+		foreach($data['workers'] as $type => $w) {
 			foreach($w as $name => $value) {
-				$workers[$name] += $value['hashrate'];
+				$workers["{$name}_{$type}"] = $value['hashrate'];
 			}
 		}
+		$workers = array_filter($workers);
 		
 		foreach($workers as $name => $value) {
 			$clean['workers'][] = array('name' => $name, 'speed' => $value);
