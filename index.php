@@ -20,7 +20,7 @@
 					</div>
 					<div class="panel-body">
 						<div class="balance" ng-repeat='bal in pool.data.balance'>
-							<span class='type'>{{bal.type}}</span>
+							<span class='type'>{{bal.type}}:</span>
 							<span class='value'>{{bal.value}}</span>
 						</div>
 					</div>
