@@ -21,7 +21,7 @@ angular.module('coinstats', [])
 					$scope.pools[id].data = data;
 					$timeout(function() {
 						$scope.fetch_pool(pool)
-					}, 300000);
+					}, 60000);
 				});
 		};
 	});
