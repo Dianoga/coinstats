@@ -1,1 +1,5 @@
-
+.loading {
+	background-image: url('loader.gif');
+	background-repeat: no-repeat;
+	background-position: right center;
+}

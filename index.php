@@ -15,13 +15,10 @@
 		<div ng-controller="StatsController" class='pools row'>
 			<div class='pool col-md-3' ng-repeat="pool in pools">
 				<div class='panel panel-default'>
-					<div class="panel-heading">
+					<div class="panel-heading" ng-class="{loading: !pool.loaded}">
 						<a href="{{pool.link}}" target='_blank'><h2 class="panel-title">{{pool.name}}</h2></a>
 					</div>
 					<div class="panel-body">
-						<div class="progress progress-striped active" ng-if="!pool.loaded">
-							<div class="progress-bar" style="width: 100%;"></div>
-						</div>
 						<div class="balance" ng-repeat='bal in pool.data.balance'>
 							<span class='type'>{{bal.type}}</span>
 							<span class='value'>{{bal.value}}</span>

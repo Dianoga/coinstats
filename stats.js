@@ -1,5 +1,5 @@
 angular.module('coinstats', [])
-	.controller('StatsController', function($scope, $http) {
+	.controller('StatsController', function($scope, $http, $timeout) {
 		$scope.pools = [];
 		
 		$http.get('fetch.php').
@@ -9,14 +9,19 @@ angular.module('coinstats', [])
 			});
 			
 		$scope.fetch_pool = function(pool) {
+			for(var i = 0; i < $scope.pools.length; i++) {
+				if($scope.pools[i].id == pool.id) {
+					var id = i;
+				}
+			}
+			$scope.pools[id].loaded = false;
 			$http.get('fetch.php?pool=' + pool.id).
-				success(function(data) {
-					for(var i = 0; i < $scope.pools.length; i++) {
-						if($scope.pools[i].id == pool.id) {
-							$scope.pools[i].loaded = true;
-							$scope.pools[i].data = data;
-						}
-					}
+				success(function(data) {					
+					$scope.pools[id].loaded = true;
+					$scope.pools[id].data = data;
+					$timeout(function() {
+						$scope.fetch_pool(pool)
+					}, 300000);
 				});
 		};
 	});
