@@ -21,7 +21,7 @@ class BtcguildService extends JsonService {
 				'name' => $w['worker_name'],
 				'total' => $w['valid_shares'] + $w['stale_shares'] + $w['dupe_shares'] + $w['unknown_shares'],
 				'accepted' => $w['valid_shares'],
-				'last_share' => strtotime("-{$w['last_share']} seconds"),
+				'last_share' => date('n/j/Y G:i', strtotime("-{$w['last_share']} seconds")),
 				'speed' => $w['hash_rate']
 				);
 		}
