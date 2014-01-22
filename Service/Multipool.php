@@ -15,7 +15,7 @@ class MultipoolService extends JsonService {
 		
 		foreach($data['currency'] as $type => $value) {
 			if($value['confirmed_rewards'] > 0) {
-				$clean['balance'][] = array('type' => $type, 'value' => number_format($value['confirmed_rewards'], 8));
+				$clean['balance'][] = array('type' => strtoupper($type), 'value' => number_format($value['confirmed_rewards'], 8));
 			}
 		}
 				
