@@ -3,3 +3,7 @@
 	background-repeat: no-repeat;
 	background-position: right center;
 }
+
+.balance .type {
+	font-weight: bold;
+}

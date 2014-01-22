@@ -4,7 +4,7 @@
 	<title>Bitcoin Stats</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="//netdna.bootstrapcdn.com/bootswatch/3.0.2/yeti/bootstrap.min.css" rel="stylesheet">
+	<link href="//netdna.bootstrapcdn.com/bootswatch/3.0.3/cyborg/bootstrap.min.css" rel="stylesheet">
 	<link rel='stylesheet' href='style.css' />
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -21,10 +21,12 @@
 						<a href="{{pool.link}}" target='_blank'><h2 class="panel-title">{{pool.name}}</h2></a>
 					</div>
 					<div class="panel-body">
-						<div class="balance" ng-repeat='bal in pool.data.balance'>
-							<span class='type'>{{bal.type}}:</span>
-							<span class='value'>{{bal.value}}</span>
-						</div>
+						<table class="balance table table-striped table-hover table-condensed">
+							<tr ng-repeat='bal in pool.data.balance'>
+								<td class='type'>{{bal.type}}:</td>
+								<td class='value'>{{bal.value}}</td>
+							</tr>
+						</table>
 					</div>
 					<ul class='list-group' ng-if="pool.data.workers[0]">
 						<li class="list-group-item worker" ng-repeat="worker in pool.data.workers">
