@@ -37,25 +37,25 @@ angular.module('coinstats', [])
 
 		$scope.process_data = function() {
 			angular.forEach($scope.pools, function(pool, key) {
-				if (pool.data.balance != undefined) {
-					angular.forEach(pool.data.balance, function(val) {
-						if ($scope.coins[val.type] == undefined || key == 0) {
-							$scope.coins[val.type] = {
-								name: val.type,
-								balance: 0
-							};
-						}
-
-						$scope.coins[val.type].balance += parseFloat(val.value);
-					});
-					$scope.coinGroups = $filter('group')($scope.coins, $scope.coinGroupCount);
+				if (pool.data == undefined) {
+					return;
 				}
 
-				if (pool.data.workers != undefined) {
-					angular.forEach(pool.data.workers, function(val, key) {
-						$scope.workers[val.name] = val;
-					});
-				}
+				angular.forEach(pool.data.balance, function(val) {
+					if ($scope.coins[val.type] == undefined || key == 0) {
+						$scope.coins[val.type] = {
+							name: val.type,
+							balance: 0
+						};
+					}
+
+					$scope.coins[val.type].balance += parseFloat(val.value);
+				});
+				$scope.coinGroups = $filter('group')($scope.coins, $scope.coinGroupCount);
+
+				angular.forEach(pool.data.workers, function(val, key) {
+					$scope.workers[val.name] = val;
+				});
 			})
 
 		};
