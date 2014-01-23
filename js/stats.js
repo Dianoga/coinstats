@@ -1,10 +1,12 @@
 angular.module('coinstats', [])
     .controller('StatsController', function($scope, $http, $timeout, $filter) {
+        $scope.coinGroupCount = 4;
+
         $scope.pools = {};
         $scope.coins = {};
         $scope.workers = {};
 
-        $scope.coinGroups = $filter('group')($scope.coins, 3);
+        $scope.coinGroups = $filter('group')($scope.coins, $scope.coinGroupCount);
 
         $http.get('fetch.php').
         success(function(data) {
@@ -41,7 +43,7 @@ angular.module('coinstats', [])
 
                 $scope.coins[val.type].balance += parseFloat(val.value);
             });
-            $scope.coinGroups = $filter('group')($scope.coins, 3);
+            $scope.coinGroups = $filter('group')($scope.coins, $scope.coinGroupCount);
 
             angular.forEach(data.workers, function(val, key) {
                 $scope.workers[val.name] = val;

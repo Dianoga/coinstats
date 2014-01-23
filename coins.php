@@ -13,7 +13,7 @@
 		<h1>Coin Stats</h1>
 
 		<div class='row' ng-controller="StatsController">
-			<div class='col-md-9'>
+			<div class='col-md-10'>
 				<div class='row' ng-repeat="coinGroup in coinGroups">
 					<div class='coin col-md-3' ng-repeat="coin in coinGroup">
 						<div class='panel panel-default'>
@@ -25,7 +25,7 @@
 					</div>
 				</div>
 			</div>
-			<div class='list-group col-md-3'>
+			<div class='list-group col-md-2'>
 				<h4 class='list-group-item active'>Sources</h4>
 				<a href="{{pool.link}}" target='_blank' class='list-group-item' ng-class="{loading: !pool.loaded}" ng-repeat="pool in pools">{{pool.name}}</a>
 			</div>
