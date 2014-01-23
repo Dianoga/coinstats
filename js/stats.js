@@ -56,10 +56,6 @@ angular.module('coinstats', [])
 						balance: parseFloat(val.value)
 					};
 				});
-
-				angular.forEach(pool.data.workers, function(val, key) {
-					$scope.workers[val.name] = val;
-				});
 			})
 			$scope.coinGroups = $filter('group')($scope.coins, $scope.coinGroupCount);
 			console.log($scope.coins);

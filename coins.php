@@ -33,12 +33,18 @@
 				</div>
 			</div>
 
-			<div class='list-group col-md-2'>
+			<div class='list-group col-md-2 sources'>
 				<h4 class='list-group-item active'>Sources</h4>
-				<a href="{{pool.link}}" target='_blank' class='list-group-item' ng-class="{loading: !pool.loaded}" ng-repeat="pool in pools">
-					<img src='{{pool.icon}}' height='16px' />
-					{{pool.name}}
-				</a>
+				<div class='list-group-item' ng-class="{loading: !pool.loaded}" ng-repeat="pool in pools">
+					<a href="{{pool.link}}" target='_blank'>
+						<img src='{{pool.icon}}' height='16px' />
+						{{pool.name}}
+					</a>
+					<div class='worker' ng-repeat="worker in pool.data.workers">
+						<span class='name'>{{worker.name}}</span>
+						<span class='speed pull-right'>{{worker.speed}}</span>
+					</div>
+				</div>
 			</div>
 		</div>
 
