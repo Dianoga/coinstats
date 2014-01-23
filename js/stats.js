@@ -4,7 +4,7 @@ angular.module('coinstats', [])
 
 		$scope.pools = {};
 		$scope.coins = {};
-		$scope.workers = {};
+		$scope.exchange = {};
 
 		$scope.coinGroups = $filter('group')($scope.coins, $scope.coinGroupCount);
 
@@ -56,9 +56,12 @@ angular.module('coinstats', [])
 						balance: parseFloat(val.value)
 					};
 				});
+
+				angular.forEach(pool.data.exchange, function(val) {
+					$scope.exchange[val.from] = val
+				});
 			})
 			$scope.coinGroups = $filter('group')($scope.coins, $scope.coinGroupCount);
-			console.log($scope.coins);
 
 		};
 	})
