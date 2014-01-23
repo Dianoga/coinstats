@@ -5,15 +5,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="//netdna.bootstrapcdn.com/bootswatch/3.0.3/cyborg/bootstrap.min.css" rel="stylesheet">
-	<link rel='stylesheet' href='style.css' />
+	<link rel='stylesheet' href='css/style.css' />
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
-	<script src='stats.js'></script>
+	<script src='js/stats.js'></script>
 </head>
 <body>
 	<div class='container'>
 		<h1>Bitcoin Stats</h1>
-	
+
 		<div ng-controller="StatsController" class='pools row'>
 			<div class='pool col-md-3' ng-repeat="pool in pools">
 				<div class='panel panel-default'>
@@ -38,7 +38,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</div>
 </body>
 </html>
