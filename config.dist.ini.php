@@ -9,6 +9,10 @@ apikey =
 apikey =
 secret =
 
+[Coinex]
+apikey =
+secret =
+
 [Blockchain]
 ; just your BTC address
 address =
