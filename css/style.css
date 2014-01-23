@@ -7,3 +7,21 @@
 .balance .type {
 	font-weight: bold;
 }
+
+.sources a {
+	display: block;
+}
+
+.sources a:hover {
+	text-decoration: none;
+	color: white;
+}
+
+.worker {
+	font-size: 85%;
+}
+
+.worker .speed {
+	color: white;
+	font-weight: bold;
+}
