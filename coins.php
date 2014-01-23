@@ -15,7 +15,10 @@
 		<h1>Bitcoin Stats</h1>
 
 		<div class='row' ng-controller="StatsController">
-			<div class='list-group col-sm-3 col-sm-offset-9'>
+			<div class='col-md-9'>
+
+			</div>
+			<div class='list-group col-md-3'>
 				<h4 class='list-group-item active'>Sources</h4>
 				<a href="{{pool.link}}" target='_blank' class='list-group-item' ng-class="{loading: !pool.loaded}" ng-repeat="pool in pools">{{pool.name}}</a>
 			</div>
