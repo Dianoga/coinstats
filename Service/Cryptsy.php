@@ -20,29 +20,8 @@ class CryptsyService extends JsonService {
 	public function fetch() {
 		$data = $this->read_cache();
 		if(!$data) {
-			$req['method'] = 'getinfo';
-			$req['nonce'] = microtime(true);
-			$post = http_build_query($req, '', '&');
-			$sign = hash_hmac('sha512', $post, $this->config['secret']);
-			$headers = array(
-				'Sign: '.$sign,
-				'Key: '.$this->config['apikey'],
-			);
-
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_URL, 'https://www.cryptsy.com/api');
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-
-			// run the query
-			$result = curl_exec($ch);
-			if($result === false) {
-				return array();
-			}
-
-			$data = json_decode($result, true);
+			$data['info'] = $this->api('getinfo');
+			$data['exchange'] = $this->api('getmarkets');
 			$this->write_cache($data);
 		}
 
@@ -52,13 +31,14 @@ class CryptsyService extends JsonService {
 	protected function process($data) {
 		$clean = array();
 
-		foreach($data['return']['balances_available'] as $type => $val) {
+		$info = $data['info']['return'];
+		foreach($info['balances_available'] as $type => $val) {
 			if((float)$val > 0) {
 				$clean['balance'][$type] = array('type' => $type, 'value' => $val);
 			}
 		}
 
-		foreach($data['return']['balances_hold'] as $type => $val) {
+		foreach($info['balances_hold'] as $type => $val) {
 			if((float)$val > 0) {
 				$total = $val;
 				if(isset($clean['balance'][$type]['value'])) {
@@ -69,6 +49,44 @@ class CryptsyService extends JsonService {
 		}
 		$clean['workers'] = array();
 
+		$exchange = $data['exchange']['return'];
+		foreach($exchange as $exc) {
+			if($exc['secondary_currency_code'] == 'BTC') {
+				$clean['exchange'][] = array(
+					'from' => $exc['primary_currency_code'],
+					'to' => $exc['secondary_currency_code'],
+					'value' => $exc['last_trade'],
+					);
+			}
+		}
+
 		return $clean;
+	}
+
+	private function api($method) {
+		$req['method'] = $method;
+		$req['nonce'] = microtime(true);
+		$post = http_build_query($req, '', '&');
+		$sign = hash_hmac('sha512', $post, $this->config['secret']);
+		$headers = array(
+			'Sign: '.$sign,
+			'Key: '.$this->config['apikey'],
+			);
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_URL, 'https://www.cryptsy.com/api');
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+
+			// run the query
+		$result = curl_exec($ch);
+		if($result === false) {
+			return array();
+		}
+
+		$data = json_decode($result, true);
+		return $data?: array();
 	}
 }
