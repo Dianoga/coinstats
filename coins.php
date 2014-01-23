@@ -15,8 +15,13 @@
 		<div class='row' ng-controller="StatsController">
 			<div class='col-md-9'>
 				<div class='row' ng-repeat="coinGroup in coinGroups">
-					<div class='coin' ng-repeat="coin in coinGroup">
-						<div class='panel'>{{coin.name}}</div>
+					<div class='coin col-md-3' ng-repeat="coin in coinGroup">
+						<div class='panel panel-default'>
+							<div class='panel-heading'>
+								<h2 class='panel-title'>{{coin.name}}</h2>
+							</div>
+							<div class='panel-body'>{{coin.balance}}</div>
+						</div>
 					</div>
 				</div>
 			</div>
