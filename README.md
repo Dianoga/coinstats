@@ -9,6 +9,7 @@ If you want to change the order of things, reorder the sections in config.ini
 
 Currently supports:
 - BTCGuild.com
+- Coinex
 - Cryptsy
 - Multipool.us
 - WeMineLTC.com
