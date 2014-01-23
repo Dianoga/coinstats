@@ -45,11 +45,13 @@ angular.module('coinstats', [])
 					if ($scope.coins[val.type] == undefined || key == 0) {
 						$scope.coins[val.type] = {
 							name: val.type,
-							balance: 0
+							balance: 0,
+							pools: []
 						};
 					}
 
 					$scope.coins[val.type].balance += parseFloat(val.value);
+					$scope.coins[val.type].pools[key] = key;
 				});
 				$scope.coinGroups = $filter('group')($scope.coins, $scope.coinGroupCount);
 

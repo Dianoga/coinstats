@@ -33,6 +33,7 @@ abstract class BasicService {
 			'name' => $c::NAME,
 			'id' => $c::ID,
 			'link' => $c::LINK,
+			'icon' => $c::ICON,
 		);
 	}
 

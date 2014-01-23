@@ -4,6 +4,7 @@ class BlockchainService extends JsonService {
 	const ID = 'Blockchain';
 	const NAME = 'Blockchain';
 	const LINK = 'http://blockchain.info';
+	const ICON = 'http://blockchain.info/favicon.ico';
 
 	public function __construct($config) {
 		parent::__construct($config);
