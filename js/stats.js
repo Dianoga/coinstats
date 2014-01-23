@@ -51,7 +51,10 @@ angular.module('coinstats', [])
 					}
 
 					$scope.coins[val.type].balance += parseFloat(val.value);
-					$scope.coins[val.type].pools[key] = key;
+					$scope.coins[val.type].pools[key] = {
+						pool: key,
+						balance: parseFloat(val.value)
+					};
 				});
 				$scope.coinGroups = $filter('group')($scope.coins, $scope.coinGroupCount);
 

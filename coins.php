@@ -18,9 +18,16 @@
 					<div class='coin col-md-3' ng-repeat="coin in coinGroup">
 						<div class='panel panel-default'>
 							<div class='panel-heading'>
-								<h2 class='panel-title'>{{coin.name}}</h2>
+								<h2 class='panel-title'>
+									{{coin.name}}
+									<span class="badge pull-right">{{coin.balance | number:8}}</span>
+								</h2>
 							</div>
-							<div class='panel-body'>Balance: {{coin.balance | number:8}}</div>
+							<div class='list-group'>
+								<a href='{{pools[pool.pool].link}}' target='_blank' class='list-group-item' ng-repeat="pool in coin.pools">
+									<img src='{{pools[pool.pool].icon}}' height='16px' /> {{pool.balance}}
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
