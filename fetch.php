@@ -1,7 +1,7 @@
 <?php
 include 'autoload.php';
 
-$config = parse_ini_file('config.ini', true);
+$config = parse_ini_file('config.ini.php', true);
 
 if(empty($_GET['pool'])) {
 	$data = array();
