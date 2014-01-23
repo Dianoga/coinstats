@@ -46,22 +46,23 @@ angular.module('coinstats', [])
 						$scope.coins[val.type] = {
 							name: val.type,
 							balance: 0,
-							pools: []
+							pools: {}
 						};
 					}
 
 					$scope.coins[val.type].balance += parseFloat(val.value);
-					$scope.coins[val.type].pools[key] = {
+					$scope.coins[val.type].pools[pool.id] = {
 						pool: key,
 						balance: parseFloat(val.value)
 					};
 				});
-				$scope.coinGroups = $filter('group')($scope.coins, $scope.coinGroupCount);
 
 				angular.forEach(pool.data.workers, function(val, key) {
 					$scope.workers[val.name] = val;
 				});
 			})
+			$scope.coinGroups = $filter('group')($scope.coins, $scope.coinGroupCount);
+			console.log($scope.coins);
 
 		};
 	})
