@@ -4,7 +4,7 @@ class MultipoolService extends JsonService {
 	const ID = 'Multipool';
 	const NAME = 'Multipool';
 	const LINK = 'http://multipool.us/accountdetails.php';
-	const ICON = 'http://multipool.us/favicon.ico';
+	const ICON = 'http://multipool.us/images/favicon.png';
 
 	public function __construct($config) {
 		parent::__construct($config);
