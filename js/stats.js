@@ -64,18 +64,19 @@ angular.module('coinstats', [])
 	})
 	.filter('group', function() {
 		return function(items, count) {
+			var keys = Object.keys(items);
+			keys.sort();
+
 			var newArr = [];
-			var i = 0;
-			angular.forEach(items, function(val, key) {
-				var row = Math.floor(i / count);
-				var col = i % count;
+			angular.forEach(keys, function(val, key) {
+				var row = Math.floor(key / count);
+				var col = key % count;
 
 				if (newArr[row] == undefined) {
 					newArr[row] = [];
 				}
 
-				newArr[row][col] = val;
-				i++;
+				newArr[row][col] = items[val];
 			});
 
 			return newArr;
