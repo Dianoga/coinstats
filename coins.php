@@ -27,7 +27,10 @@
 			</div>
 			<div class='list-group col-md-2'>
 				<h4 class='list-group-item active'>Sources</h4>
-				<a href="{{pool.link}}" target='_blank' class='list-group-item' ng-class="{loading: !pool.loaded}" ng-repeat="pool in pools">{{pool.name}}</a>
+				<a href="{{pool.link}}" target='_blank' class='list-group-item' ng-class="{loading: !pool.loaded}" ng-repeat="pool in pools">
+					<img src='{{pool.icon}}' height='16px' />
+					{{pool.name}}
+				</a>
 			</div>
 		</div>
 
