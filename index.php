@@ -48,6 +48,10 @@
 			</div>
 		</div>
 
+		<div class='row'>
+			<div class='col-md-12'>Powered by <a href='https://github.com/Dianoga/coinstats'>Coinstats</a> - Donate: 1Ene3hqRejKRkPX1FvHhU24Qi3Wi1fuw52</div>
+		</div>
+
 	</div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
