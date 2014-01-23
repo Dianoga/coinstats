@@ -1,7 +1,7 @@
 .loading {
 	background-image: url('loader2.gif');
 	background-repeat: no-repeat;
-	background-position: 95% center;
+	background-position: 95% 10px;
 }
 
 .balance .type {
