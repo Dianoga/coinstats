@@ -19,7 +19,7 @@ class CoinexService extends JsonService {
 				'Content-type: application/json',
 				'API-Sign: '.$sign,
 				'API-Key: '.$this->config['apikey'],
-			);
+				);
 
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -45,7 +45,9 @@ class CoinexService extends JsonService {
 		$clean = array();
 
 		foreach($data['balances'] as $val) {
-			$clean['balance'][] = array('type' => $val['currency_name'], 'value' => ($val['held'] + $val['amount']) / 100000000);
+			if(($val['held'] + $val['amount']) > 0) {
+				$clean['balance'][] = array('type' => $val['currency_name'], 'value' => ($val['held'] + $val['amount']) / 100000000);
+			}
 		}
 
 		$clean['workers'] = array();
