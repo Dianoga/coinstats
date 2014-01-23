@@ -25,7 +25,7 @@
 							</div>
 							<div class='list-group'>
 								<a href='{{pools[pool.pool].link}}' target='_blank' class='list-group-item' ng-repeat="pool in coin.pools">
-									<img src='{{pools[pool.pool].icon}}' height='16px' /> {{pool.balance}}
+									<img src='{{pools[pool.pool].icon}}' height='16px' /> {{pool.balance | number:8}}
 								</a>
 							</div>
 						</div>
