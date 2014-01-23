@@ -14,12 +14,11 @@
 	<div class='container'>
 		<h1>Bitcoin Stats</h1>
 
-		<div ng-controller="StatsController">
-			<ul class='list-group'>
-				<li class='list-group-item' ng-repeat="pool in pools">
-					<a href="{{pool.link}}" target='_blank'>{{pool.name}}</a>
-				</li>
-			</ul>
+		<div class='row' ng-controller="StatsController">
+			<div class='list-group col-sm-3 col-sm-offset-9'>
+				<h4 class='list-group-item active'>Sources</h4>
+				<a href="{{pool.link}}" target='_blank' class='list-group-item' ng-class="{loading: !pool.loaded}" ng-repeat="pool in pools">{{pool.name}}</a>
+			</div>
 		</div>
 
 	</div>
