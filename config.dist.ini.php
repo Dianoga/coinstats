@@ -1,21 +1,25 @@
+;<?php
+;die(); // For further security
+;/*
+
 [Multipool]
-apikey = 
+apikey =
 
 [Cryptsy]
-apikey = 
-secret = 
+apikey =
+secret =
 
 [Blockchain]
 ; just your BTC address
-address = 
+address =
 
 [Btcguild]
-apikey = 
+apikey =
 
 [Wemineltc]
-apikey = 
+apikey =
 
 [Vircurex]
 ; Vircurex requires you to create a secret phrase for each api command
-user = 
-secret = 
+user =
+secret =
