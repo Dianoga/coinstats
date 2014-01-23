@@ -4,15 +4,16 @@ class BtcguildService extends JsonService {
 	const ID = 'Btcguild';
 	const NAME = 'BTCGuild';
 	const LINK = 'http://btcguild.com';
-	
+	const ICON = 'http://btcguild.com/favicon.ico';
+
 	public function __construct($config) {
 		parent::__construct($config);
 		$this->url = "https://www.btcguild.com/api.php?api_key={$this->config['apikey']}";
 	}
-	
+
 	protected function process($data) {
 		$clean = array();
-		
+
 		$clean['balance'][] = array('type' => 'BTC', 'value' => $data['user']['unpaid_rewards']);
 		$clean['balance'][] = array('type' => 'NMC', 'value' => $data['user']['unpaid_rewards_nmc']);
 
@@ -25,7 +26,7 @@ class BtcguildService extends JsonService {
 				'speed' => $w['hash_rate']
 				);
 		}
-		
+
 		return $clean;
 	}
 }

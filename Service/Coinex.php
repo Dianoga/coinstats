@@ -4,6 +4,7 @@ class CoinexService extends JsonService {
 	const ID = 'Coinex';
 	const NAME = 'Coinex';
 	const LINK = 'http://coinex.pw';
+	const ICON = 'https://coinex.pw/favicon.ico';
 
 	public function __construct($config) {
 		parent::__construct($config);
