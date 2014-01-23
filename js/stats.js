@@ -40,7 +40,7 @@ angular.module('coinstats', [])
 				if (pool.data.balance != undefined) {
 					angular.forEach(pool.data.balance, function(val) {
 						if ($scope.coins[val.type] == undefined || key == 0) {
-						$scope.coins[val.type] = {
+							$scope.coins[val.type] = {
 								name: val.type,
 								balance: 0
 							};
