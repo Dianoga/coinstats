@@ -20,7 +20,7 @@
 							<div class='panel-heading'>
 								<h2 class='panel-title'>{{coin.name}}</h2>
 							</div>
-							<div class='panel-body'>{{coin.balance}}</div>
+							<div class='panel-body'>Balance: {{coin.balance | number:8}}</div>
 						</div>
 					</div>
 				</div>
