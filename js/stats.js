@@ -26,9 +26,12 @@ angular.module('coinstats', [])
                     $scope.pools[id].loaded = true;
                     $scope.pools[id].data = data;
                     $scope.process_data(data);
+
+                    var timer = (Math.random() * 30) + 45;
+                    console.log("Updating " + pool.name + " in " + timer + " seconds");
                     $timeout(function() {
                         $scope.fetch_pool(pool)
-                    }, 60000);
+                    }, timer * 1000);
                 });
         };
 
