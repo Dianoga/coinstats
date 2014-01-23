@@ -1,8 +1,10 @@
 angular.module('coinstats', [])
-    .controller('StatsController', function($scope, $http, $timeout) {
-        $scope.pools = [];
-        $scope.coins = [];
-        $scope.workers = [];
+    .controller('StatsController', function($scope, $http, $timeout, $filter) {
+        $scope.pools = {};
+        $scope.coins = {};
+        $scope.workers = {};
+
+        $scope.coinGroups = $filter('group')($scope.coins, 3);
 
         $http.get('fetch.php').
         success(function(data) {
@@ -29,6 +31,39 @@ angular.module('coinstats', [])
         };
 
         $scope.process_data = function(data) {
-            console.log(data);
+            angular.forEach(data.balance, function(val, key) {
+                if ($scope.coins[val.type] == undefined) {
+                    $scope.coins[val.type] = {
+                        name: val.type,
+                        balance: 0
+                    };
+                }
+
+                $scope.coins[val.type].balance += parseFloat(val.value);
+            });
+            $scope.coinGroups = $filter('group')($scope.coins, 3);
+
+            angular.forEach(data.workers, function(val, key) {
+                $scope.workers[val.name] = val;
+            });
+        };
+    })
+    .filter('group', function() {
+        return function(items, count) {
+            var newArr = [];
+            var i = 0;
+            angular.forEach(items, function(val, key) {
+                var row = Math.floor(i / count);
+                var col = i % count;
+
+                if (newArr[row] == undefined) {
+                    newArr[row] = [];
+                }
+
+                newArr[row][col] = val;
+                i++;
+            });
+
+            return newArr;
         };
     });
