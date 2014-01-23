@@ -1,9 +1,10 @@
 Coin Stats
 =========
 
-1. Rename config.dist.ini to config.ini
-1. Add your information to config.ini
-1. Profit
+1. Create a cache folder the web server can write to
+2. Rename config.dist.ini.php to config.ini.php
+3. Add your information to config.ini.php
+4. Profit
 
 If you want to change the order of things, reorder the sections in config.ini
 
@@ -15,3 +16,5 @@ Currently supports:
 - WeMineLTC.com
 - Blockchain
 - Vircurex
+
+Donate: 1Ene3hqRejKRkPX1FvHhU24Qi3Wi1fuw52
