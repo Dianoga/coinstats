@@ -18,4 +18,5 @@ Currently supports:
 - Vircurex
 
 Demo: http://scripts.3dgo.net/bitcoin/
+
 Donate: 1Ene3hqRejKRkPX1FvHhU24Qi3Wi1fuw52
