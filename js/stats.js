@@ -36,22 +36,23 @@ angular.module('coinstats', [])
 		};
 
 		$scope.process_data = function() {
+            var coins = {};
 			angular.forEach($scope.pools, function(pool, key) {
 				if (pool.data == undefined) {
 					return;
 				}
 
 				angular.forEach(pool.data.balance, function(val) {
-					if ($scope.coins[val.type] == undefined || key == 0) {
-						$scope.coins[val.type] = {
+					if (coins[val.type] == undefined) {
+						coins[val.type] = {
 							name: val.type,
 							balance: 0,
 							pools: {}
 						};
 					}
 
-					$scope.coins[val.type].balance += parseFloat(val.value);
-					$scope.coins[val.type].pools[pool.id] = {
+					coins[val.type].balance += parseFloat(val.value);
+					coins[val.type].pools[pool.id] = {
 						pool: key,
 						balance: parseFloat(val.value)
 					};
@@ -61,6 +62,7 @@ angular.module('coinstats', [])
 					$scope.exchange[val.from] = val
 				});
 			})
+            $scope.coins = coins;
 			$scope.coinGroups = $filter('group')($scope.coins, $scope.coinGroupCount);
 
 		};
