@@ -5,6 +5,7 @@ class CryptsyService extends JsonService {
 	const NAME = 'Cryptsy';
 	const LINK = 'http://cryptsy.com';
 	const ICON = 'http://cryptsy.com/favicon.ico';
+	protected $cacheTime = 60;
 
 	public function __construct($config) {
 		parent::__construct($config);
