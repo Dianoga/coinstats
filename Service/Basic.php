@@ -4,6 +4,10 @@ abstract class BasicService {
 	const ID = '';
 	static protected $cacheDir = '';
 	protected $config;
+<<<<<<< HEAD
+=======
+	protected $cacheTime = 300;
+>>>>>>> 70bf40109b2f908636527c3edda4c009509ea819
 
 	public function __construct($config = array()) {
 		$this->config = $config;
@@ -17,7 +21,11 @@ abstract class BasicService {
 	}
 
 	public function read_cache() {
+<<<<<<< HEAD
 		if(is_file($this->get_cache_path()) && filemtime($this->get_cache_path()) > time() - 5*60) {
+=======
+		if(is_file($this->get_cache_path()) && filemtime($this->get_cache_path()) > time() - $this->cacheTime) {
+>>>>>>> 70bf40109b2f908636527c3edda4c009509ea819
 			return unserialize(file_get_contents($this->get_cache_path()));
 		}
 	}
