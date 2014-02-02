@@ -39,13 +39,15 @@ class CryptsyService extends JsonService {
 			}
 		}
 
-		foreach($info['balances_hold'] as $type => $val) {
-			if((float)$val > 0) {
-				$total = $val;
-				if(isset($clean['balance'][$type]['value'])) {
-					$total += $clean['balance'][$type]['value'];
+		if(!empty($info['balances_hold'])) {
+			foreach($info['balances_hold'] as $type => $val) {
+				if((float)$val > 0) {
+					$total = $val;
+					if(isset($clean['balance'][$type]['value'])) {
+						$total += $clean['balance'][$type]['value'];
+					}
+					$clean['balance'][$type] = array('type' => $type, 'value' => $total );
 				}
-				$clean['balance'][$type] = array('type' => $type, 'value' => $total );
 			}
 		}
 		$clean['workers'] = array();
