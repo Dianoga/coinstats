@@ -15,7 +15,7 @@ class CryptsyService extends JsonService {
 		$vData = "{$this->config['secret']};{$this->config['user']};{$time};{$id};get_balances";
 		$vHash = hash('sha256', $vData);
 
-		$this->url = "http://www.cryptsy.com/api";
+		$this->url = "http://api.cryptsy.com/api";
 	}
 
 	public function fetch() {
@@ -76,7 +76,7 @@ class CryptsyService extends JsonService {
 
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_URL, 'https://www.cryptsy.com/api');
+		curl_setopt($ch, CURLOPT_URL, 'https://api.cryptsy.com/api');
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
