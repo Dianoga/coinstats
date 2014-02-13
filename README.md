@@ -10,13 +10,14 @@ Coin Stats
 If you want to change the order of things, reorder the sections in config.ini
 
 Currently supports:
+- Blockchain
 - BTCGuild.com
 - Coinex
 - Cryptsy
 - Multipool.us
-- WeMineLTC.com
-- Blockchain
+- ScryptGuild
 - Vircurex
+- WeMineLTC.com
 
 Demo: http://scripts.3dgo.net/bitcoin/
 
