@@ -9,12 +9,6 @@ class CryptsyService extends JsonService {
 
 	public function __construct($config) {
 		parent::__construct($config);
-
-		$time = gmdate('Y-m-d\TH:i:s');
-		$id = microtime(true);
-		$vData = "{$this->config['secret']};{$this->config['user']};{$time};{$id};get_balances";
-		$vHash = hash('sha256', $vData);
-
 		$this->url = "http://api.cryptsy.com/api";
 	}
 
@@ -30,6 +24,7 @@ class CryptsyService extends JsonService {
 	}
 
 	protected function process($data) {
+		//pr($data);
 		$clean = array();
 
 		$info = $data['info']['return'];
@@ -54,8 +49,8 @@ class CryptsyService extends JsonService {
 
 		$exchange = $data['exchange']['return'];
 		foreach($exchange as $exc) {
-			if($exc['secondary_currency_code'] == 'BTC') {
-				$clean['exchange'][] = array(
+			if($exc['secondary_currency_code'] == 'BTC' || !isset($clean['exchange'][$exc['primary_currency_code']])) {
+				$clean['exchange'][$exc['primary_currency_code']] = array(
 					'from' => $exc['primary_currency_code'],
 					'to' => $exc['secondary_currency_code'],
 					'value' => $exc['last_trade'],
@@ -66,7 +61,7 @@ class CryptsyService extends JsonService {
 		return $clean;
 	}
 
-	private function api($method) {
+	private function api($method, $req = array()) {
 		$req['method'] = $method;
 		$req['nonce'] = microtime(true);
 		$post = http_build_query($req, '', '&');
@@ -83,7 +78,7 @@ class CryptsyService extends JsonService {
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 
-			// run the query
+		// run the query
 		$result = curl_exec($ch);
 		if($result === false) {
 			return array();
