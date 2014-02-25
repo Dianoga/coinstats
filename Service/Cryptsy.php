@@ -6,18 +6,22 @@ class CryptsyService extends JsonService {
 	const LINK = 'http://cryptsy.com';
 	const ICON = 'http://cryptsy.com/favicon.ico';
 	protected $cacheTime = 60;
+	public $autosell;
 
 	public function __construct($config) {
 		parent::__construct($config);
 		$this->url = "http://api.cryptsy.com/api";
+		$this->autosell = explode(',', $config['autosell']);
 	}
 
-	public function fetch() {
-		$data = $this->read_cache();
+	public function fetch($useCache = true) {
+		$data = $useCache? $this->read_cache() : false;
 		if(!$data) {
 			$data['info'] = $this->api('getinfo');
 			$data['exchange'] = $this->api('getmarkets');
-			$this->write_cache($data);
+			if($useCache) {
+				$this->write_cache($data);
+			}
 		}
 
 		return $this->process($data);
@@ -31,6 +35,7 @@ class CryptsyService extends JsonService {
 		foreach($info['balances_available'] as $type => $val) {
 			if((float)$val > 0) {
 				$clean['balance'][$type] = array('type' => $type, 'value' => $val);
+				$clean['available'][$type] = array('type' => $type, 'value' => $val);
 			}
 		}
 
@@ -54,6 +59,7 @@ class CryptsyService extends JsonService {
 					'from' => $exc['primary_currency_code'],
 					'to' => $exc['secondary_currency_code'],
 					'value' => $exc['last_trade'],
+					'marketid' => $exc['marketid'],
 					);
 			}
 		}
@@ -61,7 +67,7 @@ class CryptsyService extends JsonService {
 		return $clean;
 	}
 
-	private function api($method, $req = array()) {
+	public function api($method, $req = array()) {
 		$req['method'] = $method;
 		$req['nonce'] = microtime(true);
 		$post = http_build_query($req, '', '&');

@@ -8,6 +8,7 @@ apikey =
 [Cryptsy]
 apikey =
 secret =
+autosell = CSC,EAC,LOT,LTC,MEOW,NMC,PXC,Points,SBC,SMC,TRC,ZET
 
 [Coinex]
 apikey =
@@ -18,6 +19,9 @@ secret =
 address =
 
 [Btcguild]
+apikey =
+
+[Scryptguild]
 apikey =
 
 [Wemineltc]
