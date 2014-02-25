@@ -14,7 +14,7 @@ class ScryptguildService extends JsonService {
 	protected function process($data) {
 		$clean = array();
 		foreach($data['balances']['earnings'] as $type => $val) {
-			$value = $val + $data['balances']['adjustments'][$type] - $data['balances']['payouts'][$type];
+			$value = $val + $data['balances']['adjustments'][$type] + $data['balances']['conversions'][$type] - $data['balances']['payouts'][$type];
 			if($value > 0) {
 				$clean['balance'][] = array('type' => strtoupper($type), 'value' => $value);
 			}
