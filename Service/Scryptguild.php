@@ -8,7 +8,7 @@ class ScryptguildService extends JsonService {
 
 	public function __construct($config) {
 		parent::__construct($config);
-		$this->url = "https://www.scryptguild.com/api.php?api_key={$this->config['apikey']}&workers=1&balances=1";
+		$this->url = "http://www.scryptguild.com/api.php?api_key={$this->config['apikey']}&workers=1&balances=1";
 	}
 
 	protected function process($data) {
@@ -23,8 +23,8 @@ class ScryptguildService extends JsonService {
 		foreach($data['worker_stats'] as $w) {
 			$clean['workers'][] = array(
 				'name' => $w['worker_name'],
-				'total' => $w['valid'] + $w['stale'] + $w['dupe'] + $w['unknown'],
-				'accepted' => $w['valid_shares'],
+				'total' => $w['valid'] + $w['stale'] + $w['duplicate'] + $w['unknown'],
+				'accepted' => $w['valid'],
 				'last_share' => date('n/j/Y G:i', strtotime("-{$w['last_share']} seconds")),
 				'speed' => $w['speed']
 				);
